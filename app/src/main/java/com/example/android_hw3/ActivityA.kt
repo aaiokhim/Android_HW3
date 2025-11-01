@@ -23,6 +23,10 @@ class ActivityA : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_a)
 
+        val randomColor = generateColor()
+        val layout = findViewById<LinearLayout>(R.id.root_layout_a)
+        layout.setBackgroundColor(randomColor)
+
         val btnToB = findViewById<Button>(R.id.btn_to_b)
         btnToB.setOnClickListener {
             val intent = Intent(this, ActivityB::class.java)
@@ -30,5 +34,12 @@ class ActivityA : ComponentActivity() {
         }
     }
 
+    private fun generateColor(): Int {
+        return Color.rgb(
+            Random.nextInt(256),
+            Random.nextInt(256),
+            Random.nextInt(256)
+        )
+    }
 
 }
