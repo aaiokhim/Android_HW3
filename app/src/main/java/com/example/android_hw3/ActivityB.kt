@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.graphics.Color
 import kotlin.random.Random
+import androidx.activity.viewModels
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -19,17 +20,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.android_hw3.ui.theme.Android_HW3Theme
 
 class ActivityB : ComponentActivity() {
+
+    private val viewModel: ActivityBViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_b)
 
-        //val randomColor = generateColor()
         val layout = findViewById<LinearLayout>(R.id.root_layout_b)
-        val color = intent.getIntExtra("BACKGROUND_COLOR", Color.WHITE)
-        layout.setBackgroundColor(color)
-        layout.setBackgroundColor(color)
-
         val btnToC = findViewById<Button>(R.id.btn_to_c)
+
+        if (viewModel.colorForB == 0) {
+            viewModel.colorForB = intent.getIntExtra("BACKGROUND_COLOR", Color.WHITE)
+        }
+
+        layout.setBackgroundColor(viewModel.colorForB)
+
         btnToC.setOnClickListener {
             val intent = Intent(this, ActivityC::class.java)
             startActivity(intent)

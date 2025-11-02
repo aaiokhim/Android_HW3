@@ -26,17 +26,15 @@
         <activity
             android:name=".ActivityB"
             android:exported="false"
+            android:configChanges="orientation|screenSize"
             android:label="Screen B" />
 
         <activity
             android:name=".ActivityC"
             android:exported="false"
+            android:configChanges="orientation|screenSize"
             android:label="Screen С" />
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="MainActivity" />
     </application>
 
 </manifest>
