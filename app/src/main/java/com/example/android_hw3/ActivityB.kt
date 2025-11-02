@@ -23,12 +23,13 @@ class ActivityB : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_b)
 
-        val randomColor = generateColor()
+        //val randomColor = generateColor()
         val layout = findViewById<LinearLayout>(R.id.root_layout_b)
-        layout.setBackgroundColor(randomColor)
+        val color = intent.getIntExtra("BACKGROUND_COLOR", Color.WHITE)
+        layout.setBackgroundColor(color)
+        layout.setBackgroundColor(color)
 
         val btnToC = findViewById<Button>(R.id.btn_to_c)
-
         btnToC.setOnClickListener {
             val intent = Intent(this, ActivityC::class.java)
             startActivity(intent)
