@@ -21,7 +21,9 @@ import com.example.android_hw3.ui.theme.Android_HW3Theme
 
 class ActivityB : ComponentActivity() {
 
-    private val viewModel: ActivityBViewModel by viewModels()
+    //private val viewModel: ActivityBViewModel by viewModels()
+    private val KEY_COLOR_FOR_B = "color_for_b"
+    private var colorForB = Color.WHITE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,16 +32,24 @@ class ActivityB : ComponentActivity() {
         val layout = findViewById<LinearLayout>(R.id.root_layout_b)
         val btnToC = findViewById<Button>(R.id.btn_to_c)
 
-        if (viewModel.colorForB == 0) {
-            viewModel.colorForB = intent.getIntExtra("BACKGROUND_COLOR", Color.WHITE)
+        if (savedInstanceState != null) {
+            colorForB = savedInstanceState.getInt(KEY_COLOR_FOR_B, Color.WHITE)
+            //layout.setBackgroundColor(colorForB)
+        } else {
+            colorForB = intent.getIntExtra("BACKGROUND_COLOR", Color.WHITE)
         }
 
-        layout.setBackgroundColor(viewModel.colorForB)
+        layout.setBackgroundColor(colorForB)
 
         btnToC.setOnClickListener {
             val intent = Intent(this, ActivityC::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_COLOR_FOR_B, colorForB)
     }
 
     private fun generateColor(): Int {

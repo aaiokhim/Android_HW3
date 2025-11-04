@@ -22,7 +22,10 @@ import com.example.android_hw3.ui.theme.Android_HW3Theme
 
 class ActivityC : ComponentActivity() {
 
-    private val viewModel: ActivityCViewModel by viewModels()
+    //private val viewModel: ActivityCViewModel by viewModels()
+
+    private val KEY_COLOR_FOR_C = "color_for_c"
+    private var colorForC = Color.WHITE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,16 +34,21 @@ class ActivityC : ComponentActivity() {
         val layout = findViewById<LinearLayout>(R.id.root_layout_c)
         val btnToA = findViewById<Button>(R.id.btn_to_a)
 
-        if (viewModel.colorForC == 0) {
-            viewModel.colorForC = generateColor()
-        }
+        colorForC = savedInstanceState ?.let { it : Bundle ->
+            it.getInt(KEY_COLOR_FOR_C, Color.WHITE)
+        } ?: generateColor()
 
-        layout.setBackgroundColor(viewModel.colorForC)
-        
+        layout.setBackgroundColor(colorForC)
+
         btnToA.setOnClickListener {
             val intent = Intent(this, ActivityA::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_COLOR_FOR_C, colorForC)
     }
 
     private fun generateColor(): Int {
