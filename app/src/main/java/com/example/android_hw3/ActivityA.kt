@@ -68,12 +68,14 @@ class ActivityA : ComponentActivity() {
                 colorShow.text = "Show color"
                 colorInput.text.clear()
             }
-
         }
 
         btnToB.setOnClickListener {
             val intent = Intent(this, ActivityB::class.java)
             intent.putExtra("BACKGROUND_COLOR", colorForB)
+
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+
             startActivity(intent)
         }
     }

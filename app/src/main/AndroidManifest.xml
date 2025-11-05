@@ -16,6 +16,7 @@
             android:name=".ActivityA"
             android:exported="true"
             android:label="Screen A"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.Android_HW3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,12 +27,14 @@
         <activity
             android:name=".ActivityB"
             android:exported="false"
+            android:launchMode="singleTop"
             android:configChanges="orientation|screenSize"
             android:label="Screen B" />
 
         <activity
             android:name=".ActivityC"
             android:exported="false"
+            android:launchMode="singleTop"
             android:configChanges="orientation|screenSize"
             android:label="Screen С" />
 

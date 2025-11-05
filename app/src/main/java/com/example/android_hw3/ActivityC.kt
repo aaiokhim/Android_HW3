@@ -42,6 +42,9 @@ class ActivityC : ComponentActivity() {
 
         btnToA.setOnClickListener {
             val intent = Intent(this, ActivityA::class.java)
+
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+
             startActivity(intent)
         }
     }
