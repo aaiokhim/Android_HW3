@@ -39,6 +39,7 @@ class ActivityA : ComponentActivity() {
         val colorShow = findViewById<TextView>(R.id.show_color)
         val btnGenerate = findViewById<Button>(R.id.btn_generate_color)
         val btnToB = findViewById<Button>(R.id.btn_to_b)
+        val colorInput = findViewById<EditText>(R.id.color_input)
 
         if (savedInstanceState != null) {
             colorForA = savedInstanceState.getInt(KEY_COLOR_FOR_A, Color.WHITE)
@@ -51,8 +52,23 @@ class ActivityA : ComponentActivity() {
         layout.setBackgroundColor(colorForA)
 
         btnGenerate.setOnClickListener {
-            colorForB = generateColor()
-            colorShow.setBackgroundColor(colorForB)
+            val userInput = colorInput.text.toString().trim()
+            val check = checkColor(userInput)
+            if (userInput.isEmpty()) {
+                colorForB = generateColor()
+                colorShow.setBackgroundColor(colorForB)
+                colorShow.text = "Show color"
+            } else if (check == false) {
+                //смена текста в поле показа цвета
+                colorShow.text = "Input error"
+                colorInput.text.clear()
+            } else {
+                colorForB = Color.parseColor(userInput)
+                colorShow.setBackgroundColor(colorForB)
+                colorShow.text = "Show color"
+                colorInput.text.clear()
+            }
+
         }
 
         btnToB.setOnClickListener {
@@ -74,6 +90,11 @@ class ActivityA : ComponentActivity() {
             Random.nextInt(256),
             Random.nextInt(256)
         )
+    }
+
+    private fun checkColor(color: String): Boolean {
+        val hexColor = Regex("^#([A-Fa-f0-9]{6})\$")
+        return color.matches(hexColor)
     }
 
 }
