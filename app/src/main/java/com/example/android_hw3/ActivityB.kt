@@ -20,9 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.android_hw3.ui.theme.Android_HW3Theme
 
 class ActivityB : ComponentActivity() {
-
-    //private val viewModel: ActivityBViewModel by viewModels()
-    private val KEY_COLOR_FOR_B = "color_for_b"
     private var colorForB = Color.WHITE
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +30,7 @@ class ActivityB : ComponentActivity() {
         val btnToC = findViewById<Button>(R.id.btn_to_c)
 
         if (savedInstanceState != null) {
-            colorForB = savedInstanceState.getInt(KEY_COLOR_FOR_B, Color.WHITE)
+            colorForB = savedInstanceState.getInt(Constants.KEY_COLOR_FOR_B, Color.WHITE)
             //layout.setBackgroundColor(colorForB)
         } else {
             colorForB = intent.getIntExtra("BACKGROUND_COLOR", Color.WHITE)
@@ -50,7 +47,7 @@ class ActivityB : ComponentActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(KEY_COLOR_FOR_B, colorForB)
+        outState.putInt(Constants.KEY_COLOR_FOR_B, colorForB)
     }
 
     private fun generateColor(): Int {

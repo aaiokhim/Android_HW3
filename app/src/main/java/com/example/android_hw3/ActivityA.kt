@@ -24,10 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.android_hw3.ui.theme.Android_HW3Theme
 
 class ActivityA : ComponentActivity() {
-
-    //private val viewModel: ActivityAViewModel by viewModels()
-    private val KEY_COLOR_FOR_A = "color_for_a"
-    private val KEY_COLOR_FOR_B = "color_for_b"
     private var colorForA = Color.WHITE
     private var colorForB = Color.WHITE
 
@@ -42,8 +38,8 @@ class ActivityA : ComponentActivity() {
         val colorInput = findViewById<EditText>(R.id.color_input)
 
         if (savedInstanceState != null) {
-            colorForA = savedInstanceState.getInt(KEY_COLOR_FOR_A, Color.WHITE)
-            colorForB = savedInstanceState.getInt(KEY_COLOR_FOR_B, Color.WHITE)
+            colorForA = savedInstanceState.getInt(Constants.KEY_COLOR_FOR_A, Color.WHITE)
+            colorForB = savedInstanceState.getInt(Constants.KEY_COLOR_FOR_B, Color.WHITE)
             colorShow.setBackgroundColor(colorForB)
         } else {
             colorForA = generateColor()
@@ -80,10 +76,10 @@ class ActivityA : ComponentActivity() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) { //не очень поняла с outPersistentState: PersistableBundle, когда работает и как использовать
-        super.onSaveInstanceState(outState) // так до конца и не поняла зачем оно нужно
-        outState.putInt(KEY_COLOR_FOR_A, colorForA)
-        outState.putInt(KEY_COLOR_FOR_B, colorForB)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(Constants.KEY_COLOR_FOR_A, colorForA)
+        outState.putInt(Constants.KEY_COLOR_FOR_B, colorForB)
     }
 
     private fun generateColor(): Int {
