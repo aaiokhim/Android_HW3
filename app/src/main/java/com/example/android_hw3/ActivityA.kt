@@ -1,5 +1,6 @@
 package com.example.android_hw3
 
+import android.app.ComponentCaller
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
@@ -10,6 +11,7 @@ import androidx.activity.ComponentActivity
 import kotlin.random.Random
 import android.widget.EditText
 import android.widget.TextView
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -74,6 +76,11 @@ class ActivityA : ComponentActivity() {
 
             startActivity(intent)
         }
+    }
+
+    override fun onNewIntent(intent: Intent) { //Насколько я понимаю переопределение этой функции не обязательно, поскольку ActivityA не принимает никаких данных из вне
+        super.onNewIntent(intent)
+        Log.d("ActivityA", "onNewIntent called")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
