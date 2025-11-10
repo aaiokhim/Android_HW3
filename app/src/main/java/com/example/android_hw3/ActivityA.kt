@@ -1,29 +1,15 @@
 package com.example.android_hw3
 
-import android.app.ComponentCaller
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
 import android.widget.LinearLayout
 import android.graphics.Color
-import android.os.PersistableBundle
 import androidx.activity.ComponentActivity
 import kotlin.random.Random
 import android.widget.EditText
 import android.widget.TextView
 import android.util.Log
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.android_hw3.ui.theme.Android_HW3Theme
 
 class ActivityA : ComponentActivity() {
     private var colorForA = Color.WHITE
