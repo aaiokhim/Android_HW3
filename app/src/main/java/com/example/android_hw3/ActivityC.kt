@@ -8,6 +8,10 @@ import android.widget.LinearLayout
 import android.graphics.Color
 import kotlin.random.Random
 import androidx.activity.ComponentActivity
+import android.app.ActivityManager
+import android.os.Build
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -42,6 +46,7 @@ class ActivityC : ComponentActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
 
             startActivity(intent)
+            finishAffinity()
         }
     }
 
@@ -50,12 +55,39 @@ class ActivityC : ComponentActivity() {
         outState.putInt(Constants.KEY_COLOR_FOR_C, colorForC)
     }
 
+    override fun onResume() {
+        super.onResume()
+        printActivityStack()
+    }
+
     private fun generateColor(): Int {
         return Color.rgb(
             Random.nextInt(256),
             Random.nextInt(256),
             Random.nextInt(256)
         )
+    }
+
+    fun printActivityStack(tag: String = "ActivityStack") {
+        val activityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
+
+        Log.d(tag, "=== CURRENT APP TASKS ===")
+
+        activityManager.appTasks.forEachIndexed { taskIndex, appTask ->
+            val taskInfo = appTask.taskInfo
+
+            if (taskInfo.id == -1) return
+
+            Log.d(tag, "AppTask #$taskIndex")
+            Log.d(tag, "\tTask ID: ${taskInfo.id}")
+            Log.d(tag, "\tNumber of Activities: ${taskInfo.numActivities}")
+            Log.d(tag, "\tBase Activity: ${taskInfo.baseActivity?.className}")
+            Log.d(tag, "\tTop Activity: ${taskInfo.topActivity?.className}")
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                Log.d(tag, "\tisRunning: ${taskInfo.isRunning}")
+            }
+        }
     }
 
 }
