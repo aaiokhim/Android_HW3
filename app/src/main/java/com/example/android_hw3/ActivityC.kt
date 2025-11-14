@@ -1,6 +1,5 @@
 package com.example.android_hw3
 
-import com.example.android_hw3.R
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
@@ -11,18 +10,6 @@ import androidx.activity.ComponentActivity
 import android.app.ActivityManager
 import android.os.Build
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.activity.viewModels
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.android_hw3.ui.theme.Android_HW3Theme
 
 class ActivityC : ComponentActivity() {
     private var colorForC = Color.WHITE

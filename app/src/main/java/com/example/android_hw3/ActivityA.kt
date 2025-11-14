@@ -64,7 +64,7 @@ class ActivityA : ComponentActivity() {
         }
     }
 
-    override fun onNewIntent(intent: Intent) { //Насколько я понимаю переопределение этой функции не обязательно, поскольку ActivityA не принимает никаких данных из вне
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         Log.d("ActivityA", "onNewIntent called")
     }
